@@ -28,11 +28,14 @@ public class PostsService {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("No posts. id=" + id));
         posts.update(requestDto.getTitle(), requestDto.getContent());
+//        postsRepository.save(posts);
         return id;
     }
 
+//    @Transactional
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No posts. id= " + id));
+//        entity.setAuthor("이걸하면 작성자가 바뀌어요");
         return new PostsResponseDto(entity);
     }
 
